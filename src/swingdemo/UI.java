@@ -50,7 +50,7 @@ public class UI {
         Treat treat = new Treat();
         treatImage = treat.image;
     }
-    
+
     public void showMessage(String text) {
         message = text;
         messageOn = true;

@@ -3,6 +3,9 @@ package swingdemo;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -83,7 +86,7 @@ public class MainFrame extends JFrame {
         panel.add(new JButton("Start"));
         panel.add(new JButton("Pause"));
         
-        GamePanel gamePanel = new GamePanel();
+        // GamePanel gamePanel = new GamePanel();
 //        cards.add(gamePanel);
         
         JToggleButton musicToggle = new JToggleButton("Toogle Music");
@@ -129,13 +132,17 @@ public class MainFrame extends JFrame {
 //                cl.next(cards);
 //            }
 //        }));
+        HomePanel homePanel = new HomePanel();
+
+
         
         //Adding Components to the frame
         Container cp = getContentPane(); 
         cp.setLayout(new BorderLayout());
 //        cp.add(BorderLayout.CENTER,cards);
         cp.add(BorderLayout.NORTH,mb);
-//        cp.add(BorderLayout.CENTER, gamePanel);
+//        // cp.add(BorderLayout.CENTER, gamePanel);
+        cp.add(BorderLayout.CENTER, homePanel);
         cp.add(BorderLayout.SOUTH, panel);
 //        cp.add(BorderLayout.WEST, control);
 //        cp.add(BorderLayout.CENTER, control);
@@ -143,7 +150,7 @@ public class MainFrame extends JFrame {
 
         add(mainPanel);
         
-        gamePanel.setUpGame();
-        gamePanel.startGameThread();
+        // gamePanel.setUpGame();
+        // gamePanel.startGameThread();
     }
 }
