@@ -1,6 +1,9 @@
 package swingdemo;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 /**
@@ -34,16 +37,20 @@ public class MainFrame extends JFrame {
         panel.add(new JButton("Start"));
         panel.add(new JButton("Pause"));
         
-        GamePanel gamePanel = new GamePanel();
+        // GamePanel gamePanel = new GamePanel();
+        HomePanel homePanel = new HomePanel();
+
+
         
         //Adding Components to the frame
         Container cp = getContentPane(); 
         cp.setLayout(new BorderLayout());
         cp.add(BorderLayout.NORTH,mb);
-        cp.add(BorderLayout.CENTER, gamePanel);
+        // cp.add(BorderLayout.CENTER, gamePanel);
+        cp.add(BorderLayout.CENTER, homePanel);
         cp.add(BorderLayout.SOUTH, panel);
         
-        gamePanel.setUpGame();
-        gamePanel.startGameThread();
+        // gamePanel.setUpGame();
+        // gamePanel.startGameThread();
     }
 }
