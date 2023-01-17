@@ -35,7 +35,9 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
-    Sound sound = new Sound();
+//    Sound sound = new Sound();
+//    Sound sound = Sound.getInstance();
+    BackgroundSound sound = BackgroundSound.getInstance();
     public CatItemSetter catItemSetter = new CatItemSetter(this);
     public UI userInterface = new UI(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -72,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
             
             // 1 UPDATE: character's postions
             update();
-            //random();
+//            random();
             
             double remainingTime = (nextDrawTime - System.nanoTime()) / 1000000;
             
