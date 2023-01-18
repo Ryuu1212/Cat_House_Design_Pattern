@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     public void setUpGame() {
-        playMusic(0);
+//        playMusic(0);
         catItemSetter.setObject();
     }
     
@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+//            System.out.println("run game");
         }
         
     }

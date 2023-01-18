@@ -24,7 +24,9 @@ public class HomePanel extends JPanel {
     
 
     HomeTileManager homeTileManager = new HomeTileManager(this);
-    Sound sound = new Sound();
+//    Sound sound = new Sound();
+        BackgroundSound sound = BackgroundSound.getInstance();
+
     
     public HomePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));

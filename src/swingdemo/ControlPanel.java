@@ -16,16 +16,21 @@ import javax.swing.JPanel;
  * @author chairiel
  */
 public class ControlPanel extends javax.swing.JPanel {
-    private static final JPanel cards = new JPanel(new CardLayout());
+    private JPanel mainPanel;
+    private CardLayout cardLayout;
+    private GamePanel gamePanel;
     /**
      * Creates new form ControlPanel
      */
     public ControlPanel() {
         initComponents();
-//        GamePanel gamePanel = new GamePanel();
-//        DecoratorPanel decoratorPanel = new DecoratorPanel();
-//        cards.add(gamePanel);
-//        cards.add(decoratorPanel);
+    }
+    public ControlPanel(JPanel mp, CardLayout cl, GamePanel gp){
+        initComponents();
+        mainPanel = mp;
+        cardLayout = cl;
+        gamePanel = gp;
+        playMusic(0);
     }
 
     /**
@@ -184,34 +189,20 @@ public class ControlPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setVisible(false);
-//        MainFrame mf = new MainFrame();
-//        GamePanel gp = new GamePanel();
-//        gp.show();
-//        Container c =mf.getContentPane();
-//        c.add(BorderLayout.CENTER,gp);
-//        add(BorderLayout.CENTER,gp);
-//        mf.dispose();
-//        gp.setVisible(true);
-
+//        setVisible(false);
+        cardLayout.show(mainPanel, "game");
+        gamePanel.setUpGame();
+        gamePanel.startGameThread();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // DECORATE ROOM
-        CardLayout cl = (CardLayout) cards.getLayout();
-//        cl.next(cards);
-        cl.last(cards);
-        System.out.println(cards.getComponent(0));
-        System.out.println(cards.getComponent(1));
-        System.out.println("change to decorate");
-//        MainFrame mf = new MainFrame();
-//        mf.repaint();
-
+        cardLayout.show(mainPanel, "decorator");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // CHANGE THEME
-        
+        cardLayout.show(mainPanel, "change");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -219,22 +210,34 @@ public class ControlPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        GamePanel gp = new GamePanel();
+
         BackgroundSound sound =BackgroundSound.getInstance();
-        System.out.println(sound.getState());
+        System.out.println("Previous state:"+sound.getState());
         if(sound.getState()==1){
-            gp.stopMusic();
+//            gamePanel.stopMusic();
+            stopMusic();
             sound.setState(2);
         }
         else if(sound.getState()==2){
-            gp.playMusic(0);
+//            gamePanel.playMusic(0);
+            playMusic(0);
             sound.setState(1);
         }
-        System.out.println(sound.getState());
+        System.out.println("Current State:"+sound.getState());
         
         System.out.println("toggle music");
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    BackgroundSound sound = BackgroundSound.getInstance();
+    public void playMusic(int i) {
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    
+    public void stopMusic() {
+        sound.stop();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
