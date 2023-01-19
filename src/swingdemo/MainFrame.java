@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
         //Creating the Frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exit program if close-window button clicked
         setTitle("Bing Chilling with Calico Cat");  // "super" JFrame sets title
-        setSize(960, 672);   // "super" JFrame sets initial size
+        setSize(960, 700);   // "super" JFrame sets initial size
         setVisible(true);    // "super" JFrame shows
         setLocationRelativeTo(null);
         
@@ -85,6 +85,8 @@ public class MainFrame extends JFrame {
         panel.add(new JLabel("Hello, Player X!"));
         panel.add(new JButton("Start"));
         panel.add(new JButton("Pause"));
+
+
         
         // GamePanel gamePanel = new GamePanel();
 //        cards.add(gamePanel);
@@ -132,7 +134,8 @@ public class MainFrame extends JFrame {
 //                cl.next(cards);
 //            }
 //        }));
-        HomePanel homePanel = new HomePanel();
+        // HomePanel homePanel = new HomePanel();
+        ThemeSwitcherPanel homeButtonPanel = new ThemeSwitcherPanel();
 
 
         
@@ -142,13 +145,13 @@ public class MainFrame extends JFrame {
 //        cp.add(BorderLayout.CENTER,cards);
         cp.add(BorderLayout.NORTH,mb);
 //        // cp.add(BorderLayout.CENTER, gamePanel);
-        cp.add(BorderLayout.CENTER, homePanel);
+        cp.add(BorderLayout.CENTER, homeButtonPanel);
         cp.add(BorderLayout.SOUTH, panel);
 //        cp.add(BorderLayout.WEST, control);
 //        cp.add(BorderLayout.CENTER, control);
         
 
-        add(mainPanel);
+        // add(mainPanel);
         
         // gamePanel.setUpGame();
         // gamePanel.startGameThread();
