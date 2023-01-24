@@ -3,7 +3,8 @@ package catitem;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import swingdemo.GamePanel;
+import playgame.GamePanel;
+import main.UtilityTool;
 
 /**
  *
@@ -17,6 +18,7 @@ public class CatItem {
     public Rectangle solidArea = new Rectangle(0, 0, 24, 24);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+    UtilityTool utilityTool = new UtilityTool();
     
     int floorUpperBoundary = 380;
     int floorLowerBoundary = 576;
@@ -31,7 +33,7 @@ public class CatItem {
         int catItemBottom = floorY + gp.tileSize/2;
         
         if(catItemLeft > floorLeftBoundary && catItemRight < floorRightBoundary && catItemTop > floorUpperBoundary && catItemBottom < floorLowerBoundary) {        
-            g2.drawImage(image, floorX, floorY, gp.tileSize/2, gp.tileSize/2, null);
+            g2.drawImage(image, floorX, floorY, null);
         }   
     }
 }

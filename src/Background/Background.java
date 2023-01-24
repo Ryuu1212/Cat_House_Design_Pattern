@@ -1,6 +1,5 @@
-package Background;
+package background;
 
 public interface Background {
-    public void getTileImage();
-    public void setTileMapFilePath();
+    public String getfilePath();
 }
