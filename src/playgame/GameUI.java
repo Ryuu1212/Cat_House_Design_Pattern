@@ -1,6 +1,5 @@
 package playgame;
 
-import playgame.GamePanel;
 import catitem.Treat;
 import java.awt.Color;
 import java.awt.Font;
@@ -41,7 +40,7 @@ public class GameUI {
         
         arial_25 = new Font("Arial", Font.PLAIN, 25);
         
-        Treat treat = new Treat(gp);
+        Treat treat = new Treat();
         treatImage = treat.image;
     }
     

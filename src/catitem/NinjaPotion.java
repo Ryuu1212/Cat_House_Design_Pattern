@@ -2,7 +2,7 @@ package catitem;
 
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import playgame.GamePanel;
+import main.ViewScreenConfiguration;
 
 /**
  *
@@ -10,11 +10,11 @@ import playgame.GamePanel;
  */
 public class NinjaPotion extends CatItem {
     
-    public NinjaPotion(GamePanel gp) {
+    public NinjaPotion() {
         name = "Ninja Potion";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/resources/catitem/ninja_potion.png"));
-            utilityTool.scaleImage(image, gp.tileSize/2, gp.tileSize/2);
+            utilityTool.scaleImage(image, ViewScreenConfiguration.TILE_SIZE/2, ViewScreenConfiguration.TILE_SIZE/2);
         } catch(IOException e) {
             
         }
