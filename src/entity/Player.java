@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import playgame.GamePanel;
 import playgame.KeyHandler;
 import main.UtilityTool;
-import main.ViewScreenConfiguration;
 
 /**
  *
@@ -34,7 +33,7 @@ public class Player extends Entity {
     
     public final void setDefaultValues() {
         playerX = 48;
-        playerY = 9 * ViewScreenConfiguration.TILE_SIZE;
+        playerY = 9 * gp.tileSize;
         speed = 4;
         direction = "down";
         moveBehavior = new UserControlledMove(gp, keyHandler, this);
@@ -65,7 +64,7 @@ public class Player extends Entity {
         
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/resources/calico/" + imageName + ".png"));
-            image = utilityTool.scaleImage(image, ViewScreenConfiguration.TILE_SIZE, ViewScreenConfiguration.TILE_SIZE);
+            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch(IOException e) {
             
         }

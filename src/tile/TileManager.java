@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import main.ViewScreenConfiguration;
 import selecttheme.AbstractThemeFactory;
 import selecttheme.ThemeAFactory;
 import selecttheme.ThemeBFactory;
+import furniture.Bed;
+import decorateroom.CatBed;
 import window.Window;
 
 /**
@@ -24,6 +27,8 @@ public final class TileManager {
     AbstractThemeFactory themeFactory;
     Background background;
     Window window;
+    Bed bed;
+    CatBed catbed;
     String filepath;
     
     private TileManager() {
@@ -31,6 +36,7 @@ public final class TileManager {
         background = themeFactory.createBackground();
         filepath = background.getfilePath();
         window = themeFactory.createWindow();
+        
         tile = new Tile[15];
         mapTileNum = new int [ViewScreenConfiguration.MAX_SCREEN_COL][ViewScreenConfiguration.MAX_SCREEN_ROW];
         
@@ -45,14 +51,29 @@ public final class TileManager {
     public void changeBackground(int i) {
         if (i == 2) {
             themeFactory = new ThemeBFactory();
-        } else {
+        } else if (i == 1){
             themeFactory = new ThemeAFactory();
+        } else if(i ==3){
+            
         }
         background = themeFactory.createBackground();
         window = themeFactory.createWindow();
         filepath = background.getfilePath();
         loadMap();
     }
+    
+    public void drawBed(){
+        
+        bed = new Bed();
+        bed.getImage();
+        BufferedImage img = bed.image;
+        Graphics2D g2 = img.createGraphics();
+        g2.drawImage(img,125,285,150,150,null);
+        
+        
+    }
+    
+
     
     public void loadMap() {
         try {
@@ -140,6 +161,11 @@ public final class TileManager {
         }
     }
     
+    public void drawb(Graphics2D g2){
+        
+        //bed.draw(g2);
+    }
+   
     public void draw(Graphics2D g2) {
         int col = 0;
         int row = 0;
@@ -164,6 +190,16 @@ public final class TileManager {
         }
         
         window.draw(g2);
+       
+        
+        
+        
+        
         
     }
+    
+    
+    
+  
+    
 }

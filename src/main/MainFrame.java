@@ -3,6 +3,7 @@ package main;
 import decorateroom.DecorateRoomViewPanel;
 import homemenu.HomeMenuPanel;
 import selecttheme.ThemeSwitcherPanel;
+import decorateroom.DecorateRoomPanel;
 import playgame.GamePanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -25,6 +26,7 @@ public class MainFrame extends JFrame {
     HomeMenuPanel homeMenuPanel;
     GamePanel gamePanel;
     DecorateRoomViewPanel decoratorPanel;
+    DecorateRoomPanel decoratePanel;
     ThemeSwitcherPanel themeSwitcherPanel;
     Sound backgroundSound;
     
@@ -34,10 +36,11 @@ public class MainFrame extends JFrame {
         gamePanel = new GamePanel();
         decoratorPanel = new DecorateRoomViewPanel();
         themeSwitcherPanel = new ThemeSwitcherPanel();
+        decoratePanel = new DecorateRoomPanel();
         homeMenuPanel = new HomeMenuPanel(mainPanel, cardLayout, gamePanel);
         mainPanel.add(homeMenuPanel, "HomeMenu");
         mainPanel.add(gamePanel, "PlayGame");
-        mainPanel.add(decoratorPanel, "DecorateRoom");
+        mainPanel.add(decoratePanel, "DecorateRoom");
         mainPanel.add(themeSwitcherPanel, "SelectTheme");
         
         //Creating the Frame
