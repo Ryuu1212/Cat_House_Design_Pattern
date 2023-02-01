@@ -1,6 +1,5 @@
 package playgame;
 
-import playgame.GamePanel;
 import catitem.Treat;
 import java.awt.Color;
 import java.awt.Font;
@@ -10,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import main.ViewScreenConfiguration;
 
 /**
  *
@@ -41,7 +41,7 @@ public class GameUI {
         
         arial_25 = new Font("Arial", Font.PLAIN, 25);
         
-        Treat treat = new Treat(gp);
+        Treat treat = new Treat();
         treatImage = treat.image;
     }
     
@@ -63,18 +63,18 @@ public class GameUI {
             if(gameFinished == true) {
                 text = "You got all the treats!";
                 x = getXforCenteredText(text);
-                y = gp.screenHeight/2 - 3*gp.tileSize;
+                y = ViewScreenConfiguration.SCREEN_HEIGHT/2 - 3*ViewScreenConfiguration.TILE_SIZE;
                 g2.drawString(text, x, y);
                 
                 g2.setFont(arial_25);
                 x = getXforCenteredText(text);
-                y = gp.screenHeight/2 - 2*gp.tileSize;
+                y = ViewScreenConfiguration.TILE_SIZE/2 - 2*ViewScreenConfiguration.TILE_SIZE;
                 text = "Time taken: " + decimalFormat.format(playTime) + "s";
                 g2.drawString(text, x, y);
             } else if(countDown <= 0) {
                 text = "Game Over";
                 x = getXforCenteredText(text);
-                y = gp.screenHeight/2 - 3*gp.tileSize;
+                y = ViewScreenConfiguration.SCREEN_HEIGHT/2 - 3*ViewScreenConfiguration.TILE_SIZE;
                 g2.drawString(text, x, y);
             }
             
@@ -93,19 +93,19 @@ public class GameUI {
             }
             
             g2.setFont(arial_25);
-            g2.drawString("Time: "+decimalFormat.format(countDown), gp.tileSize*16 , 48);
+            g2.drawString("Time: "+decimalFormat.format(countDown), ViewScreenConfiguration.TILE_SIZE*16 , 48);
             
             g2.setFont(arcadeClassic_30);
             g2.setColor(Color.GRAY);
-            g2.drawImage(treatImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize/2, gp.tileSize/2, null);
+            g2.drawImage(treatImage, ViewScreenConfiguration.TILE_SIZE/2, ViewScreenConfiguration.TILE_SIZE/2, ViewScreenConfiguration.TILE_SIZE/2, ViewScreenConfiguration.TILE_SIZE/2, null);
             g2.drawString("x " + gp.player.hasTreat, 55, 47);
 
 
-            if(gp.gameState == gp.playState) {
+            if(gp.gameState == gp.PLAY_STATE) {
                 // Dispaly message
                 if(messageOn == true) {
                     g2.setFont(arcadeClassic_30);
-                    g2.drawString(message, gp.tileSize/2, gp.tileSize*5);
+                    g2.drawString(message, ViewScreenConfiguration.TILE_SIZE/2, ViewScreenConfiguration.TILE_SIZE*5);
 
                     messageCounter++;
 
@@ -114,7 +114,7 @@ public class GameUI {
                         messageOn = false;
                     }
                 }
-            } else if(gp.gameState == gp.pauseState) {
+            } else if(gp.gameState == gp.PAUSE_STATE) {
                 drawPausedScreen();
             }
         }
@@ -123,14 +123,14 @@ public class GameUI {
     public void drawPausedScreen() {
         String text = "PAUSED";
         int x = getXforCenteredText(text);
-        int y = gp.screenHeight/2;
+        int y = ViewScreenConfiguration.SCREEN_HEIGHT/2;
         
         g2.drawString(text, x, y);
     }
     
     public int getXforCenteredText(String text) {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth/2 - length/2;
+        int x = ViewScreenConfiguration.SCREEN_WIDTH/2 - length/2;
         return x;
     }
 }

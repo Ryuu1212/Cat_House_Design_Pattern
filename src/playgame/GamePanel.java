@@ -18,7 +18,6 @@ import keycontrolaction.RightPressedAction;
 import keycontrolaction.RightReleasedAction;
 import keycontrolaction.UpPressedAction;
 import keycontrolaction.UpReleasedAction;
-import main.Sound;
 import main.ViewScreenConfiguration;
 import tile.TileManager;
 
@@ -26,15 +25,7 @@ import tile.TileManager;
  *
  * @author amarabjamal
  */
-public class GamePanel extends JPanel implements Runnable {
-    
-    //Screen settings    
-    public final int tileSize = ViewScreenConfiguration.TILE_SIZE;
-    public final int maxScreenCol = ViewScreenConfiguration.MAX_SCREEN_COL;
-    public final int maxScreenRow = ViewScreenConfiguration.MAX_SCREEN_ROW;
-    public final int screenWidth = ViewScreenConfiguration.SCREEN_WIDTH;
-    public final int screenHeight = ViewScreenConfiguration.SCREEN_HEIGHT;
-    
+public class GamePanel extends JPanel implements Runnable {    
     // FPS
     int FPS = 60;
     
@@ -42,7 +33,6 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileManager = TileManager.getInstance();
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
-    public Sound sound = new Sound("/resources/sound/background.wav");
     public CatItemSetter catItemSetter = new CatItemSetter(this);
     public GameUI userInterface = new GameUI(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -53,11 +43,11 @@ public class GamePanel extends JPanel implements Runnable {
     
     // GAME STATE
     public int gameState;
-    public final int playState = 1;
-    public final int pauseState = 2;
+    public final int PLAY_STATE = 1;
+    public final int PAUSE_STATE = 2;
     
     public GamePanel() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setPreferredSize(new Dimension(ViewScreenConfiguration.SCREEN_WIDTH, ViewScreenConfiguration.SCREEN_HEIGHT));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         keyInputBinding();
@@ -93,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     public void setUpGame() {
         catItemSetter.setObject();
-        gameState = playState;
+        gameState = PLAY_STATE;
     }
     
     public void startGameThread() {
@@ -103,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     public void restart() {
         catItemSetter.setObject();
-        gameState = playState;
+        gameState = PLAY_STATE;
     }
 
     @Override
@@ -134,10 +124,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     public void move() {
-        if(gameState == playState) {
+        if(gameState == PLAY_STATE) {
             player.move();
         } 
-        if(gameState == pauseState) {
+        if(gameState == PAUSE_STATE) {
             
         }
         
@@ -155,7 +145,7 @@ public class GamePanel extends JPanel implements Runnable {
         // CAT ITEMS
         for (CatItem catItem : catItems) {
             if (catItem != null) {
-                catItem.draw(g2, this);
+                catItem.draw(g2);
             }
         }
         

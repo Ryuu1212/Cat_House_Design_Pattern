@@ -1,7 +1,7 @@
 package playgame;
 
-import playgame.GamePanel;
 import entity.Entity;
+import main.ViewScreenConfiguration;
 
 /**
  *
@@ -15,16 +15,16 @@ public class CollisionChecker {
     
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
-        floorUpperBoundary = gp.tileSize * 8 - gp.tileSize/2;
-        floorLowerBoundary = gp.screenHeight;
-        floowRightBoundary = gp.screenWidth;
+        floorUpperBoundary = ViewScreenConfiguration.TILE_SIZE * 8 - ViewScreenConfiguration.TILE_SIZE/2;
+        floorLowerBoundary = ViewScreenConfiguration.SCREEN_HEIGHT;
+        floowRightBoundary = ViewScreenConfiguration.SCREEN_WIDTH;
     }
     
     public void checkTile(Entity entity) {
         int entityLeftPlayerX = entity.playerX;
-        int entityRightPlayerX = entity.playerX + gp.tileSize;
+        int entityRightPlayerX = entity.playerX + ViewScreenConfiguration.TILE_SIZE;
         int entityTopPlayerY = entity.playerY;
-        int entityBottomPlayerY = entity.playerY + gp.tileSize;
+        int entityBottomPlayerY = entity.playerY + ViewScreenConfiguration.TILE_SIZE;
         
         switch(entity.direction) {
             case "up":
