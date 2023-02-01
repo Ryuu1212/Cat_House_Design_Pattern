@@ -3,8 +3,8 @@ package catitem;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import playgame.GamePanel;
 import main.UtilityTool;
+import main.ViewScreenConfiguration;
 
 /**
  *
@@ -26,11 +26,11 @@ public class CatItem {
     int floorLeftBoundary = 0;
     
     
-    public void draw(Graphics2D g2, GamePanel gp) {
+    public void draw(Graphics2D g2) {
         int catItemLeft = floorX;
-        int catItemRight = floorX + gp.tileSize/2;
+        int catItemRight = floorX + ViewScreenConfiguration.TILE_SIZE/2;
         int catItemTop = floorY;
-        int catItemBottom = floorY + gp.tileSize/2;
+        int catItemBottom = floorY + ViewScreenConfiguration.TILE_SIZE/2;
         
         if(catItemLeft > floorLeftBoundary && catItemRight < floorRightBoundary && catItemTop > floorUpperBoundary && catItemBottom < floorLowerBoundary) {        
             g2.drawImage(image, floorX, floorY, null);
